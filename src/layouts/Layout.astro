@@ -1,9 +1,10 @@
 ---
 interface Props {
 	title: string;
+    bodyClass: string;
 }
 
-const { title } = Astro.props;
+const { title, bodyClass } = Astro.props;
 ---
 
 <!doctype html>
@@ -16,8 +17,9 @@ const { title } = Astro.props;
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 	</head>
-	<body>
-		<slot />
+	<body class={bodyClass}>
+        <slot name="heading" />
+        <slot name="form" />
 	</body>
 </html>
 <style is:global>
@@ -32,20 +34,14 @@ const { title } = Astro.props;
 			white 60%
 		);
 	}
-	html {
+	* {
+        padding: 0;
+        margin: 0;
 		font-family: system-ui, sans-serif;
-		background: #13151a;
-		background-size: 224px;
+        box-sizing: border-box;
 	}
-	code {
-		font-family:
-			Menlo,
-			Monaco,
-			Lucida Console,
-			Liberation Mono,
-			DejaVu Sans Mono,
-			Bitstream Vera Sans Mono,
-			Courier New,
-			monospace;
-	}
+
+    body {
+        background-color: rgb(219, 221, 222);
+    }
 </style>
